@@ -1,5 +1,5 @@
 <template>
-    <div v-for="project in projects" :key="project.id" class="bg-gray-200 my-2 px-5 py-10 rounded-lg border-l-6 border-red-500 " :class="{green:project.complete}">
+    <div v-for="project in projects" :key="project.id" class="bg-gray-200 my-2 px-5 py-10 rounded-lg border-l-6 border-red-400 " :class="{green:project.complete}">
       <SingleProject :project="project" @updateComplete="updateComplete"></SingleProject>
     </div>
 </template>
@@ -41,6 +41,6 @@ export default {
 </script>
 <style>
   .green{
-    border-left-color: green;
+    border-left-color: lightgreen;
   }
 </style>

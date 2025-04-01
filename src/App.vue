@@ -1,4 +1,8 @@
 <template>
+  <nav class="text-center mb-10">
+    <router-link to="/">Projects</router-link>
+    <router-link :to="{name:'addProject'}">Add Project</router-link>
+  </nav>
   <router-view/>
 </template>
 <script>
@@ -11,19 +15,20 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #2c3e50;
   margin: 100px auto;
-  width: 500px;
-}
-
-nav {
-  padding: 30px;
+  max-width: 500px;
+  max-height: 600px;
+  overflow: auto;
 }
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  font-size: 25px;
+  color: #888989;
+  text-transform: uppercase;
+  margin-left: 20px;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #42b983 ;
 }
 </style>

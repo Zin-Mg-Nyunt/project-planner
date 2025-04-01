@@ -1,7 +1,7 @@
 <template>
     <div class=" flex justify-between">
         <div>
-            <h1 class="text-2xl uppercase tracking-wide font-bold cursor-pointer select-none" @click="showDetail=!showDetail">{{project.title}}</h1>
+            <h1 class="text-lg md:text-xl lg:text-2xl uppercase tracking-wide font-bold cursor-pointer select-none" @click="showDetail=!showDetail">{{project.title}}</h1>
         </div>
         <div>
             <span class="material-icons ml-3 cursor-pointer select-none active:text-gray-400">delete</span>
@@ -35,7 +35,7 @@ export default {
                 })
             })
             .then(()=>{
-                this.$emit('updateComplete',this.project.id)
+                this.$emit('updateComplete',this.project.id) // to update in local
             })
             .catch(err=>console.log(err))
         }
