@@ -16,8 +16,7 @@ export default {
   color: #2c3e50;
   margin: 100px auto;
   max-width: 500px;
-  max-height: 600px;
-  overflow: auto;
+
 }
 
 nav a {

@@ -34,7 +34,8 @@ export default {
                     body:JSON.stringify({
                         title:this.title,
                         detail:this.detail,
-                        complete: false
+                        complete: false,
+                        createTime: new Date().toLocaleString('en-GB',{hour12:true})
                     })
                 })
                 .then(()=>{
