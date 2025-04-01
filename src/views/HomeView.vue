@@ -1,7 +1,7 @@
 <template>
-  <div v-for="project in projects" :key="project.id" class="bg-gray-300 my-2 p-5 rounded-xl ">
-    <SingleProject :project="project"></SingleProject>
-  </div>
+    <div v-for="project in projects" :key="project.id" class="bg-gray-200 my-2 px-5 py-10 rounded-lg border-l-6 border-red-500 " :class="{green:project.complete}">
+      <SingleProject :project="project" @updateComplete="updateComplete"></SingleProject>
+    </div>
 </template>
 
 <script>
@@ -29,5 +29,18 @@ export default {
       console.log(err)
     })
   },
+  methods:{
+    updateComplete(id){
+      let updateProject=this.projects.find(project=>{
+        return project.id === id;
+      })
+      updateProject.complete=!updateProject.complete
+    }
+  }
 }
 </script>
+<style>
+  .green{
+    border-left-color: green;
+  }
+</style>
