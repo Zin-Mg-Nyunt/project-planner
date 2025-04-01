@@ -7,7 +7,7 @@
         <h1 class="text-center font-[900] uppercase tracking-wide text-3xl text-gray-400">Create Project</h1>
       </div>
 
-      <div v-for="project in projects" :key="project.id" class="bg-gray-200 my-2 px-5 py-10 rounded-lg border-l-6 border-red-400 " :class="{green:project.complete}">
+      <div v-for="project in filteredProjects" :key="project.id" class="bg-gray-200 my-2 px-5 py-10 rounded-lg border-l-6 border-red-400 " :class="{green:project.complete}">
         <SingleProject :project="project" @updateComplete="updateComplete" @deleteProject="deleteProject"></SingleProject>
       </div>
     </div>
@@ -51,6 +51,19 @@ export default {
     deleteProject(id){ // delete method for local
       this.projects=this.projects.filter(project=>{
         return project.id !== id;
+      })
+    }
+  },
+  computed:{ // use computed property because this one write as a function but can use as a data
+    filteredProjects(){ // to filter projects 
+      return this.projects.filter(project=>{
+        if(this.current==="complete"){
+        return project.complete;
+       }
+        if(this.current==="ongoing"){
+          return !project.complete
+        }
+        return this.projects
       })
     }
   }
