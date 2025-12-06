@@ -1,18 +1,6 @@
 {
   "projects": [
     {
-      "id": "1",
-      "title": "project one",
-      "detail": "project one detail",
-      "completed": true
-    },
-    {
-      "id": "2",
-      "title": "project two",
-      "detail": "project two detail",
-      "completed": true
-    },
-    {
       "id": "3",
       "title": "project three",
       "detail": "project three detail",

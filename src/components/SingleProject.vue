@@ -64,6 +64,7 @@
         <button
           class="rounded-full hover:bg-red-100 transition-colors cursor-pointer p-2"
           title="Delete project"
+          @click="deleteProject"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -118,6 +119,13 @@ export default {
           this.$emit('updateComplete', this.project.id)
         })
         .catch((err) => console.log(err))
+    },
+    deleteProject() {
+      fetch(this.api + this.project.id, { method: 'DELETE' })
+        .then(() => {
+          this.$emit('deleteProject', this.project.id)
+        })
+        .catch()
     },
   },
 }

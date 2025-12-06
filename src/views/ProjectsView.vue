@@ -9,6 +9,7 @@
         :key="project.id"
         :project="project"
         @updateComplete="updateComplete"
+        @deleteProject="deleteProject"
       />
     </div>
   </div>
@@ -30,6 +31,9 @@ export default {
     updateComplete(id) {
       const findProject = this.projects.find((p) => p.id == id)
       findProject.completed = !findProject.completed
+    },
+    deleteProject(id) {
+      this.projects = this.projects.filter((p) => p.id != id)
     },
   },
   mounted() {
