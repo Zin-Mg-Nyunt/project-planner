@@ -4,7 +4,12 @@
       No projects found. Add a new project to get started!
     </div>
     <div v-else>
-      <SingleProject v-for="project in projects" :key="project.id" :project="project" />
+      <SingleProject
+        v-for="project in projects"
+        :key="project.id"
+        :project="project"
+        @updateComplete="updateComplete"
+      />
     </div>
   </div>
 </template>
@@ -20,6 +25,12 @@ export default {
     return {
       projects: [],
     }
+  },
+  methods: {
+    updateComplete(id) {
+      const findProject = this.projects.find((p) => p.id == id)
+      findProject.completed = !findProject.completed
+    },
   },
   mounted() {
     fetch('http://localhost:3000/projects')

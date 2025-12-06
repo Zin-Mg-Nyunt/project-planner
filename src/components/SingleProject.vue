@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 mb-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all">
+  <div class="px-5 py-8 mb-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all">
     <div class="flex justify-between items-center">
       <h2
         class="text-xl font-semibold mb-2 capitalize cursor-pointer"
@@ -13,6 +13,7 @@
         <button
           class="rounded-full hover:bg-green-100 transition-colors cursor-pointer p-2"
           :title="project.completed ? 'Mark as incomplete' : 'Mark as complete'"
+          @click="updateComplete"
         >
           <svg
             v-if="project.completed"
@@ -99,7 +100,25 @@ export default {
   data() {
     return {
       showDetail: false,
+      api: 'http://localhost:3000/projects/',
     }
+  },
+  methods: {
+    updateComplete() {
+      fetch(this.api + this.project.id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          completed: !this.project.completed,
+        }),
+      })
+        .then(() => {
+          this.$emit('updateComplete', this.project.id)
+        })
+        .catch((err) => console.log(err))
+    },
   },
 }
 </script>
