@@ -5,6 +5,12 @@
       "title": "project three",
       "detail": "project three detail",
       "completed": false
+    },
+    {
+      "id": "aade",
+      "title": "new project",
+      "detail": "new project detail",
+      "completed": false
     }
   ]
 }

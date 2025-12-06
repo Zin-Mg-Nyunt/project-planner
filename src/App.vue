@@ -1,5 +1,5 @@
 <template>
-  <div class="w-3xl p-5">
+  <div class="w-3xl p-5 h-170">
     <div class="space-x-5 text-2xl font-bold text-gray-400 pb-10 text-center">
       <Navbar />
     </div>
