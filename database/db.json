@@ -4,7 +4,7 @@
       "id": "b157",
       "title": "codeTalk project",
       "detail": "This is a blog website for Teachnology and Software Development. It is created with Laravel. On this website, you can create an account and log in, and read the blogs.",
-      "completed": true
+      "completed": false
     }
   ]
 }

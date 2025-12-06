@@ -1,5 +1,8 @@
 <template>
-  <div class="px-5 py-8 mb-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all">
+  <div
+    class="px-5 py-8 mb-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all"
+    :class="{ 'delete-animation': isDeleting }"
+  >
     <div class="flex justify-between items-center">
       <h2
         class="text-xl font-semibold mb-2 capitalize cursor-pointer"
@@ -104,6 +107,7 @@ export default {
     return {
       showDetail: false,
       api: 'http://localhost:3000/projects/',
+      isDeleting: false,
     }
   },
   methods: {
@@ -123,14 +127,35 @@ export default {
         .catch((err) => console.log(err))
     },
     deleteProject() {
-      fetch(this.api + this.project.id, { method: 'DELETE' })
-        .then(() => {
-          this.$emit('deleteProject', this.project.id)
-        })
-        .catch()
+      // Trigger animation
+      this.isDeleting = true
+
+      // Wait for animation to complete, then delete
+      setTimeout(() => {
+        fetch(this.api + this.project.id, { method: 'DELETE' })
+          .then(() => {
+            this.$emit('deleteProject', this.project.id)
+          })
+          .catch()
+      }, 500) // Animation duration matches CSS
     },
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.delete-animation {
+  animation: slideOutRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+}
+</style>
