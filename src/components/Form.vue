@@ -40,6 +40,29 @@
         Cancel
       </button>
       <button
+        v-if="id"
+        type="button"
+        class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 shadow-md hover:shadow-lg transition-all transform hover:scale-105"
+        @click="updateProject"
+      >
+        <span class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Update Project
+        </span>
+      </button>
+      <button
+        v-else
         type="button"
         class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 shadow-md hover:shadow-lg transition-all transform hover:scale-105"
         @click="createProject"
@@ -66,15 +89,22 @@
 
 <script>
 export default {
+  props: {
+    id: {
+      type: String || Number,
+      default: null,
+    },
+  },
   data() {
     return {
       title: '',
       detail: '',
+      api: 'http://localhost:3000/projects/',
     }
   },
   methods: {
     createProject() {
-      fetch('http://localhost:3000/projects/', {
+      fetch(this.api, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,6 +116,28 @@ export default {
         }),
       }).then(() => this.$router.push({ name: 'projects' }))
     },
+    updateProject() {
+      fetch(this.api + this.id, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: this.title,
+          detail: this.detail,
+        }),
+      }).then(() => this.$router.push({ name: 'projects' }))
+    },
+  },
+  mounted() {
+    if (this.id) {
+      fetch(this.api + this.id)
+        .then((res) => res.json())
+        .then((data) => {
+          ;((this.title = data.title), (this.detail = data.detail))
+        })
+        .catch((err) => console.log(err))
+    }
   },
 }
 </script>
