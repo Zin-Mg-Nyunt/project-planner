@@ -11,7 +11,7 @@
 
 ## 📌 Overview
 
-**Project Planner** is a small productivity application built with **Vue 3 (Composition API)** and **Pinia** for state management.  
+**Project Planner** is a small productivity application built with **Vue 3** and **Pinia** for state management.  
 It allows users to create, update, filter, and manage projects efficiently.
 
 This project is part of my **Phase Two → Frontend Only** learning roadmap, focusing on improving component design, store structure, reusable logic, and API integration.
